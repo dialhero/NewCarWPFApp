@@ -15,8 +15,8 @@ namespace NewCarWPFApp.ViewModels
 {
     public class AddTripViewModel : INotifyPropertyChanged
     {
-        private readonly ITripRepository _tripRepository = new FileTripRepository("trip.txt");
-        public ObservableCollection<Car> Cars { get; }
+        private readonly ITripRepository _tripRepository;
+        public ObservableCollection<Car> Cars { get; set; }
         public Car SelectedCar { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now;
@@ -33,11 +33,7 @@ namespace NewCarWPFApp.ViewModels
             SaveCommand = new RelayCommand(AddTrip, CanAddTrip);
         }
 
-        public AddTripViewModel()
-        {
-        }
-
-        private bool CanAddTrip(object _) => SelectedCar != null && Distance > 0 && StartDate > StartDate;
+        private bool CanAddTrip(object _) => SelectedCar != null && Distance > 0 && StartDate <= EndDate;
 
         private void AddTrip(object _)
         {
@@ -51,10 +47,12 @@ namespace NewCarWPFApp.ViewModels
             _tripRepository.AddTrip(newTrip);
             TripAdded?.Invoke(newTrip); //Giv MainViewModel besked
 
-           /* LicensePlate = string.Empty;
-            StartDate = DateTime.Empty;
-            EndDate = DateTime.Empty;
-            Distance = bool Distance.Empty; */
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
+            Distance = 0;
+            OnPropertyChanged(nameof(StartDate));
+            OnPropertyChanged(nameof(EndDate));
+            OnPropertyChanged(nameof(Distance));
 
         }
 

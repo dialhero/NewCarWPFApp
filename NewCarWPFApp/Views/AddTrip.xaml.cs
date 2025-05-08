@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NewCarWPFApp.Models;
+using NewCarWPFApp.Repositories;
 using NewCarWPFApp.ViewModels;
+
 
 namespace NewCarWPFApp.Views
 {
@@ -20,11 +24,12 @@ namespace NewCarWPFApp.Views
     /// </summary>
     public partial class AddTrip : Window
     {
-        public AddTrip()
+        public AddTrip(ITripRepository tripRepo, ObservableCollection<Car> cars, Action<Trip>? onTripAdded = null)
         {
             InitializeComponent();
-            AddTripViewModel addTripViewModel = new AddTripViewModel();
-            this.DataContext = addTripViewModel;
+            AddTripViewModel addTripViewModel = new AddTripViewModel(tripRepo, cars);
+            addTripViewModel.TripAdded += onTripAdded;
+            DataContext = addTripViewModel;
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {

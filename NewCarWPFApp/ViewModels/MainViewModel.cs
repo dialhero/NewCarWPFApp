@@ -67,8 +67,12 @@ namespace NewCarWPFApp.ViewModels
 
             private void ShowTripWindow(object obj)
                 {
-                    AddTrip addTripWin = new AddTrip();
-                    addTripWin.ShowDialog(); // Vent til vindue lukkes
+                    var window = new AddTrip(_tripRepository, Cars, trip =>
+                    {
+                        Trips.Add(trip); // vises med det samme
+                    });
+
+                    window.ShowDialog(); // Vent til vindue lukkes
 
                     // Reload bilerne fra filen bagefter
                     if (SelectedCar == null) return;
