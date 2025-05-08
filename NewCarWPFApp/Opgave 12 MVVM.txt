@@ -1,0 +1,74 @@
+﻿
+🧠 Opgavesæt 12: MVVM 1
+=======================
+
+🎯 Formål:
+----------
+At introducere MVVM-arkitektur i C# og WPF med udgangspunkt i en velkendt domænemodel: Car.
+Du skal lære at strukturere din applikation med ViewModel, data binding og commands, og kombinere
+det med dit tidligere arbejde med Repository Pattern, så UI og datatilgang holdes adskilt.
+
+--------------------------------------------------------------------------------
+
+🚗 Øvelse 1: Tilføj en bil via MVVM
+⏱️ Tidsramme: 90 minutter
+
+Lav en simpel WPF-applikation, hvor brugeren kan tilføje biler til en liste.
+
+UI skal indeholde:
+------------------
+- TextBox til registreringsnummer (LicensePlate)
+- TextBox til bilens model (Model)
+- Button til at tilføje bilen
+- ListBox, som viser alle tilføjede biler
+
+ViewModel skal indeholde:
+--------------------------
+- Properties: LicensePlate, Model
+- En ObservableCollection<Car> kaldet Cars
+- En AddCarCommand, der:
+  - Opretter en ny Car
+  - Tilføjer den til Cars
+  - Nulstiller inputfelterne
+
+Brug databinding og RelayCommand. Repository bruges ikke endnu – kun ViewModel og UI.
+
+--------------------------------------------------------------------------------
+
+📁 Øvelse 2: Tilføj CarRepository til ViewModel
+⏱️ Tidsramme: 90 minutter
+
+Tilføj nu det ICarRepository, som du tidligere har arbejdet med i Opgavesæt 11.
+
+ViewModel skal:
+---------------
+- Bruge ICarRepository til at hente og gemme biler
+- Ved opstart kalde GetAllCars() og lægge dem i Cars
+- Når brugeren tilføjer en bil, skal den gemmes i repository via AddCar(car)
+
+💡 Tip: Du kan enten bruge din FileCarRepository direkte eller en mock-version i starten.
+
+--------------------------------------------------------------------------------
+
+🧪 Øvelse 3: Test ViewModel-logik
+⏱️ Tidsramme: 45 minutter
+
+Skriv enkle enhedstests for MainViewModel:
+
+- AddCarCommand_ShouldAddCarToRepositoryAndList()
+- AddCarCommand_ShouldIgnoreEmptyInput()
+
+Brug evt. en fake eller mock ICarRepository til at simulere lagring.
+
+--------------------------------------------------------------------------------
+
+🎤 Øvelse 4: Fremlæggelse og refleksion
+⏱️ Tidsramme: 30 minutter
+
+Vis jeres løsning: hvordan hænger View, ViewModel og Repository sammen?
+
+Reflekter over:
+---------------
+- Hvad gjorde MVVM lettere?
+- Hvad var svært at forstå eller implementere?
+- Hvordan hjælper adskillelse af lag med testbarhed og vedligeholdelse?
