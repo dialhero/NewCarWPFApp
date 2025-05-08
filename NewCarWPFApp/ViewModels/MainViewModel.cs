@@ -18,7 +18,9 @@ namespace NewCarWPFApp.ViewModels
     public class MainViewModel : INotifyPropertyChanged
     {
         private readonly ICarRepository _carRepository;
+
         private readonly ITripRepository _tripRepository;
+        public Car SelectedCar { get; set; }
         public ObservableCollection<Car> Cars { get; set; }
         public ObservableCollection<Trip> Trips { get; set; }
         public ICommand ShowCarWindowCommand { get; set; }
@@ -30,10 +32,16 @@ namespace NewCarWPFApp.ViewModels
         {
             _carRepository = new FileCarRepository("cars.txt");
             _tripRepository = new FileTripRepository("trips.txt");
+
             Cars = new ObservableCollection<Car>(_carRepository.GetAllCars());
+            Trips = new ObservableCollection<Trip>(_tripRepository.GetTripsForCar());
+
             OnPropertyChanged(nameof(Cars));
+            OnPropertyChanged(nameof(Trips));
+
             ShowCarWindowCommand = new RelayCommand(ShowCarWindow, CanShowWindow);
             ShowTripWindowCommand = new RelayCommand(ShowTripWindow, CanShowWindow);
+
             CloseCommand = new RelayCommand(_ => CloseAction?.Invoke(), _ => true);
         }
 
@@ -63,12 +71,14 @@ namespace NewCarWPFApp.ViewModels
                     addTripWin.ShowDialog(); // Vent til vindue lukkes
 
                     // Reload bilerne fra filen bagefter
-                    Cars.Clear();
-                    foreach (var trip in _tripRepository.GetTripsForCar())
-                    {
-                        Trips.Add(trip);
-                    }
-                }
+                    if (SelectedCar == null) return;
+
+                    Trips.Clear();
+                    foreach (var trip in _tripRepository.GetTripsForCar(SelectedCar.LicensePlate))
+                        {
+                             Trips.Add(trip);
+                        }
+        }
 
         
 

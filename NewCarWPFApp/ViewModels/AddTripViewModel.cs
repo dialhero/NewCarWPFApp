@@ -33,6 +33,10 @@ namespace NewCarWPFApp.ViewModels
             SaveCommand = new RelayCommand(AddTrip, CanAddTrip);
         }
 
+        public AddTripViewModel()
+        {
+        }
+
         private bool CanAddTrip(object _) => SelectedCar != null && Distance > 0 && StartDate > StartDate;
 
         private void AddTrip(object _)

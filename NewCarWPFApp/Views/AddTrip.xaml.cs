@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NewCarWPFApp.ViewModels;
 
 namespace NewCarWPFApp.Views
 {
@@ -22,6 +23,12 @@ namespace NewCarWPFApp.Views
         public AddTrip()
         {
             InitializeComponent();
+            AddTripViewModel addTripViewModel = new AddTripViewModel();
+            this.DataContext = addTripViewModel;
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // eller anden funktionalitet
         }
     }
 }

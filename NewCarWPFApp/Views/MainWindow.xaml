@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NewCarWPFApp" xmlns:core="clr-namespace:NewCarWPFApp.Core" xmlns:viewmodels="clr-namespace:NewCarWPFApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        xmlns:local="clr-namespace:NewCarWPFApp" 
+        xmlns:core="clr-namespace:NewCarWPFApp.Core" 
+        xmlns:viewmodels="clr-namespace:NewCarWPFApp.ViewModels" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
         mc:Ignorable="d"        
         x:Name="mainwindow"
         
@@ -43,8 +45,9 @@
             <!-- Knapper -->
             <StackPanel Grid.Row="1">
                 <Button Height="30"
-                        Command="{Binding ShowWindowCommand}"
+                        Command="{Binding ShowCarWindowCommand}"
                         Content="Tilføj Biler"
+                        Click="Button_Click_1"
                         FontSize="18"
                         FontWeight="Bold"
                         Foreground="#FEFAE0"
@@ -73,6 +76,41 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
+
+                <Button Height="30"
+        Command="{Binding ShowTripWindowCommand}"
+        Content="Tilføj Ture"
+        Click="Button_Click_2"
+        FontSize="18"
+        FontWeight="Bold"
+        Foreground="#FEFAE0"
+        Width="150"
+        VerticalContentAlignment="Center"
+        Padding="5"
+        Margin="22"
+        VerticalAlignment="Bottom"
+        HorizontalAlignment="Right"
+        BorderThickness="1"
+        BorderBrush="#DDA15E"
+        Background="#FF7A825E" FontFamily="Cascadia Code">
+
+
+
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="7">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
                 <Button Height="30"
                     Command="{Binding CloseCommand}"
                     Content="Luk vindue"
@@ -83,7 +121,7 @@
                     Width="150"
                     VerticalContentAlignment="Center"
                     Padding="5"
-                    Margin="0,500,0,0"
+                    Margin="0,400,0,0"
                     BorderThickness="1"
                     BorderBrush="#DDA15E"
                     Background="#FF8E321D" FontFamily="Cascadia Code" RenderTransformOrigin="0.5,0.5">

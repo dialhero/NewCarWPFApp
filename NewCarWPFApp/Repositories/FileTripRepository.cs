@@ -94,7 +94,19 @@ namespace NewCarWPFApp.Repositories
 
         public IEnumerable<Trip?> GetTripsForCar()
         {
-            throw new NotImplementedException();
+            var trips = new List<Trip>();
+
+            if (!File.Exists(FilePath))
+            { return trips; }
+
+            foreach (var line in File.ReadAllLines(FilePath))
+            {
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    trips.Add(Trip.FromString(line));
+                }
+            }
+            return trips;
         }
     }
     }
