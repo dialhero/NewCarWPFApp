@@ -1,0 +1,76 @@
+Opgavesæt 13: MVVM 2
+
+Formål:
+I dette opgavesæt bygger du videre på din eksisterende MVVM-applikation, hvor du tidligere har arbejdet med at tilføje biler til en liste (Opgavesæt 12).
+Nu skal du udvide programmet, så brugeren kan vælge en bil, se bilens ture, og tilføje nye ture – stadig efter principperne i MVVM-arkitektur og med brug af Repository Pattern.
+
+
+Formål: Del jeres arbejde, stil spørgsmål og giv hinanden feedback. Husk: gensidig læring.
+
+Øvelse 1: Din opgave trin for trin
+
+1. Brug din eksisterende bil-applikation som grundlag
+Genbrug løsningen fra Opgavesæt 12, hvor du:
+- Tilføjede biler til en ObservableCollection<Car>
+- Gemte biler i et ICarRepository
+- Brugte ViewModel, binding og command korrekt
+
+Denne gang skal du udvide løsningen til også at håndtere ture (Trip).
+
+2. Udvid din ViewModel til at arbejde med Ture
+Din MainViewModel skal indeholde:
+- ObservableCollection<Trip> Trips
+- En property SelectedCar (Car), som bliver sat via ComboBox
+
+Derudover skal følgende properties bruges til at oprette en ny tur:
+- StartDate (DateTime)
+- EndDate (DateTime)
+- Distance (double)
+
+Tilføj en AddTripCommand, der:
+- Opretter en ny tur
+- Knytter turen til den valgte bil (via CarRegNr)
+- Gemmer turen i ITripRepository
+- Tilføjer turen til Trips
+- Nulstiller inputfelterne
+
+3. Design en ny brugerflade (UI)
+Din XAML-brugerflade skal indeholde:
+- ComboBox:
+  - Viser listen af biler (Cars)
+  - Binder SelectedItem til SelectedCar
+- ListBox eller DataGrid:
+  - Viser alle ture for den valgte bil (Trips)
+- DatePicker til Startdato (StartDate)
+- DatePicker til Slutdato (EndDate)
+- TextBox til Distance (Distance)
+- Button:
+  - Tekst: "Tilføj tur"
+  - Bunden til AddTripCommand
+
+Krav:
+- Når en bil vælges, opdateres listen af ture
+- Når en tur tilføjes, vises den straks i listen
+
+4. Funktionalitet og validering
+Din applikation skal sikre følgende:
+- En bil skal være valgt før en tur kan oprettes
+- Startdato må ikke være senere end slutdato
+- Distance skal være en positiv værdi
+- Brug MessageBox til succesbeskeder og fejlmeddelelser
+
+5. Ekstra opgave (valgfri)
+Hvis du bliver hurtigt færdig:
+- Implementér funktionalitet til at slette en tur
+- Filtrér ture pr. måned eller år
+- Gør det muligt at redigere en eksisterende tur
+
+Øvelse 2: Refleksion
+Besvar disse spørgsmål skriftligt eller til dig selv, når du er færdig:
+
+1. Hvordan hænger biler og ture sammen i din løsning?
+2. Hvad var det vigtigste, du skulle tage højde for, da du håndterede både Car og Trip i din ViewModel?
+3. Hvordan har brugen af databinding og commands gjort koden mere overskuelig?
+4. Hvad var udfordrende ved at implementere validering (fx datoer, afstand)?
+5. Hvordan kunne du forbedre applikationen yderligere, hvis du havde mere tid?
+6. Hvordan oplevede du arbejdet med MVVM i forhold til klassisk "code-behind" programmering?
