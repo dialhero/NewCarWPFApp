@@ -10,8 +10,7 @@
 
     <Grid Margin="0,0,0,-6">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="109*"/>
-            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition/>            
         </Grid.ColumnDefinitions>
         <Label Content="Registreringsnummer" 
                Foreground="#FEFAE0" 
