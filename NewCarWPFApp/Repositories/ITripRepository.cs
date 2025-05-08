@@ -14,7 +14,6 @@ namespace NewCarWPFApp.Repositories
         public void AddTrip(Trip trip);
 
         public void DeleteTrip(Trip trip);
-
-        
+        IEnumerable<Trip?> GetTripsForCar();
     }
 }

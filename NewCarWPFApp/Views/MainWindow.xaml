@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NewCarWPFApp" xmlns:core="clr-namespace:NewCarWPFApp.Core" d:DataContext="{d:DesignInstance Type=core:ObservableObject}"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:NewCarWPFApp" xmlns:core="clr-namespace:NewCarWPFApp.Core" xmlns:viewmodels="clr-namespace:NewCarWPFApp.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+        mc:Ignorable="d"        
         x:Name="mainwindow"
+        
         
         Title="MainWindow" Height="720" Width="1050"
         WindowStyle="None"
@@ -56,6 +57,9 @@
                         BorderThickness="1"
                         BorderBrush="#DDA15E"
                         Background="#606C38" FontFamily="Cascadia Code">
+                    
+                   
+    
 
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -69,7 +73,37 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-            
+                <Button Height="30"
+                    Command="{Binding CloseCommand}"
+                    Content="Luk vindue"
+                    Click="Button_Click"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#FEFAE0"
+                    Width="150"
+                    VerticalContentAlignment="Center"
+                    Padding="5"
+                    Margin="0,500,0,0"
+                    BorderThickness="1"
+                    BorderBrush="#DDA15E"
+                    Background="#FF8E321D" FontFamily="Cascadia Code" RenderTransformOrigin="0.5,0.5">
+
+
+
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="7">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
             </StackPanel>
 
             <StackPanel Grid.Column="2">

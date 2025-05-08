@@ -92,7 +92,11 @@ namespace NewCarWPFApp.Repositories
                 }
             }
 
+        public IEnumerable<Trip?> GetTripsForCar()
+        {
+            throw new NotImplementedException();
         }
+    }
     }
 
 

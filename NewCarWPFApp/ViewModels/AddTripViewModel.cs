@@ -46,6 +46,12 @@ namespace NewCarWPFApp.ViewModels
             };
             _tripRepository.AddTrip(newTrip);
             TripAdded?.Invoke(newTrip); //Giv MainViewModel besked
+
+           /* LicensePlate = string.Empty;
+            StartDate = DateTime.Empty;
+            EndDate = DateTime.Empty;
+            Distance = bool Distance.Empty; */
+
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

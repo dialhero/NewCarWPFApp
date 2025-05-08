@@ -21,7 +21,14 @@ namespace NewCarWPFApp
         {
             InitializeComponent();
             MainViewModel mainViewModel = new MainViewModel();
+            mainViewModel.CloseAction = () => this.Close();
             this.DataContext = mainViewModel;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close(); // eller anden funktionalitet
+        }
+
     }
 }
